@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Giris{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block navbar2 %}
+{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<form method="post">
+    {%csrf_token%}{{form|crispy}}
+    <p>Hesabınız yok mu? <a href="../kayit">Kaydolun!</a></p>
+    <button type="submit" class="btn btn-success">Giriş</button>
+</form>
+{% endblock %}

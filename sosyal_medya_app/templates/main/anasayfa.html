@@ -1,0 +1,22 @@
+{% extends '../base.html' %}
+{% block title %}Anasayfa{% endblock %}
+
+{% block content %}
+{% for post in postlar %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{post.yazar.username}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{post.paylasma_tarihi}}</h6>
+      <p class="card-text">{{post.icerik}}</p>
+      {% if user == post.yazar or perms.sosyal_medya_app.delete_post %}
+      <form method="post">
+          {%csrf_token%}
+          <button class="btn btn-danger" type="submit" name="id" value="{{post.id}}">Sil</button>
+      </form>
+      {% endif %}  
+    </div>
+  </div>
+{% empty %}
+<p>Henüz paylaşım yok.</p>
+{% endfor %}
+{% endblock %}
